@@ -3,6 +3,8 @@ todo.txt
 X sample C# console app
 X create C# library
 X play with NSpec
+  X Nuget
+  X NSpecRunner.exe SampleNSpecLib\bin\debug\SampleNSpecLib.dll
 > play with Rabbit MQ
   X install server (http://www.rabbitmq.com/install-windows.html)
   > play with start doc

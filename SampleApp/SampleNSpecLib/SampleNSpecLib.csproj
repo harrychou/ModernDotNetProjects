@@ -33,6 +33,9 @@
     <Reference Include="NSpec">
       <HintPath>..\packages\nspec.0.9.68\lib\NSpec.dll</HintPath>
     </Reference>
+    <Reference Include="NSpecAddin">
+      <HintPath>..\packages\nspec4nunit.0.9.66.8\lib\net35\NSpecAddin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,9 +48,25 @@
     <Compile Include="my_first_spec.cs" />
     <Compile Include="DebuggerShim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specs\describe_some_class.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Test.nunit">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="nunit-gui-runner">
+      <HintPath>..\packages\NUnit.Runners.2.6.3\tools\lib\nunit-gui-runner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\packages\NUnit.Runners.2.6.3\tools\lib\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\packages\NUnit.Runners.2.6.3\tools\lib\nunit.core.interfaces.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

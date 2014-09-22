@@ -1,8 +1,0 @@
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\bin\Debug\Receive.exe.config
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\bin\Debug\Receive.exe
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\bin\Debug\Receive.pdb
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\bin\Debug\RabbitMQ.Client.dll
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\bin\Debug\RabbitMQ.Client.xml
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\obj\Debug\Receive.csprojResolveAssemblyReference.cache
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\obj\Debug\Receive.exe
-C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Receive\obj\Debug\Receive.pdb

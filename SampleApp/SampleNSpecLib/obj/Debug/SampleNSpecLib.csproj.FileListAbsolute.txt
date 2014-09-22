@@ -1,6 +1,0 @@
-C:\Projects\csharp_projects\SampleApp\SampleNSpecLib\bin\Debug\SampleNSpecLib.dll
-C:\Projects\csharp_projects\SampleApp\SampleNSpecLib\bin\Debug\SampleNSpecLib.pdb
-C:\Projects\csharp_projects\SampleApp\SampleNSpecLib\bin\Debug\NSpec.dll
-C:\Projects\csharp_projects\SampleApp\SampleNSpecLib\obj\Debug\SampleNSpecLib.csprojResolveAssemblyReference.cache
-C:\Projects\csharp_projects\SampleApp\SampleNSpecLib\obj\Debug\SampleNSpecLib.dll
-C:\Projects\csharp_projects\SampleApp\SampleNSpecLib\obj\Debug\SampleNSpecLib.pdb

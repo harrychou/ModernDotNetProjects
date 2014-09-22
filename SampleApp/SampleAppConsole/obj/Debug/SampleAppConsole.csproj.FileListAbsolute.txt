@@ -1,0 +1,6 @@
+C:\Projects\csharp_projects\SampleApp\SampleAppConsole\bin\Debug\SampleAppConsole.exe.config
+C:\Projects\csharp_projects\SampleApp\SampleAppConsole\bin\Debug\SampleAppConsole.exe
+C:\Projects\csharp_projects\SampleApp\SampleAppConsole\bin\Debug\SampleAppConsole.pdb
+C:\Projects\csharp_projects\SampleApp\SampleAppConsole\obj\Debug\SampleAppConsole.exe
+C:\Projects\csharp_projects\SampleApp\SampleAppConsole\obj\Debug\SampleAppConsole.pdb
+C:\Projects\csharp_projects\SampleApp\SampleAppConsole\obj\Debug\SampleAppConsole.csprojResolveAssemblyReference.cache

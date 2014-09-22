@@ -1,0 +1,8 @@
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\bin\Debug\Send.exe.config
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\bin\Debug\Send.exe
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\bin\Debug\Send.pdb
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\bin\Debug\RabbitMQ.Client.dll
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\bin\Debug\RabbitMQ.Client.xml
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\obj\Debug\Send.exe
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\obj\Debug\Send.pdb
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\01_SimpleSendReceive\Send\obj\Debug\Send.csprojResolveAssemblyReference.cache

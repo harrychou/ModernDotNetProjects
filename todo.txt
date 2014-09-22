@@ -1,0 +1,21 @@
+todo.txt
+
+X sample C# console app
+X create C# library
+X play with NSpec
+> play with Rabbit MQ
+  X install server (http://www.rabbitmq.com/install-windows.html)
+  > play with start doc
+    X Hello World
+    - Work Queue
+    - Publish/Subscribe
+    - Routing
+    - Topics
+    - RPC
+> play with NServiceBus
+  X install NServiceBus
+  X simple send and receive example: 
+    http://docs.particular.net/nservicebus/nservicebus-step-by-step-guide
+  > other samples: http://docs.particular.net/nservicebus/
+- more realistic example
+

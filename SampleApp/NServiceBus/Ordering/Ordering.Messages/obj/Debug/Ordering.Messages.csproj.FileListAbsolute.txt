@@ -1,0 +1,8 @@
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\bin\Debug\Ordering.Messages.dll
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\bin\Debug\Ordering.Messages.pdb
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\bin\Debug\NServiceBus.dll
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\bin\Debug\NServiceBus.pdb
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\bin\Debug\NServiceBus.xml
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\obj\Debug\Ordering.Messages.csprojResolveAssemblyReference.cache
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\obj\Debug\Ordering.Messages.dll
+C:\Projects\csharp_projects\SampleApp\NServiceBus\Ordering\Ordering.Messages\obj\Debug\Ordering.Messages.pdb

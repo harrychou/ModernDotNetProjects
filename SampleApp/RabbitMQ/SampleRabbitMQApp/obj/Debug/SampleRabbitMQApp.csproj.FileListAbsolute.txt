@@ -1,0 +1,14 @@
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\bin\Debug\SampleRabbitMQApp.exe.config
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\bin\Debug\SampleRabbitMQApp.exe
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\bin\Debug\SampleRabbitMQApp.pdb
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\bin\Debug\RabbitMQ.Client.dll
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\bin\Debug\RabbitMQ.Client.xml
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\obj\Debug\SampleRabbitMQApp.csprojResolveAssemblyReference.cache
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\obj\Debug\SampleRabbitMQApp.exe
+C:\Projects\csharp_projects\SampleApp\SampleRabbitMQApp\obj\Debug\SampleRabbitMQApp.pdb
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\SampleRabbitMQApp\bin\Debug\SampleRabbitMQApp.exe.config
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\SampleRabbitMQApp\bin\Debug\SampleRabbitMQApp.exe
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\SampleRabbitMQApp\bin\Debug\SampleRabbitMQApp.pdb
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\SampleRabbitMQApp\obj\Debug\SampleRabbitMQApp.csprojResolveAssemblyReference.cache
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\SampleRabbitMQApp\obj\Debug\SampleRabbitMQApp.exe
+C:\Projects\csharp_projects\SampleApp\RabbitMQ\SampleRabbitMQApp\obj\Debug\SampleRabbitMQApp.pdb

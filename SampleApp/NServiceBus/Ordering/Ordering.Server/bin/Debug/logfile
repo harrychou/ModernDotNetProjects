@@ -1,0 +1,179 @@
+2014-09-22 13:15:21,326 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.IWantToRunBeforeConfiguration completed in 0.11 s
+2014-09-22 13:15:21,429 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.Config.INeedInitialization completed in 0.00 s
+2014-09-22 13:15:21,443 [1] INFO  NServiceBus.Licensing.LicenseManager [(null)] <(null)> - Trial for Particular Service Platform is still active, trial expires on 10/6/2014. Configuring NServiceBus to run in trial mode.
+2014-09-22 13:15:21,497 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.INeedInitialization completed in 0.07 s
+2014-09-22 13:15:23,349 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.IWantToRunBeforeConfigurationIsFinalized completed in 1.85 s
+2014-09-22 13:15:23,406 [1] INFO  NServiceBus.Features.Sagas [(null)] <(null)> - The saga feature was enabled but no saga implementations could be found. No need to enable the configured saga persister
+2014-09-22 13:15:23,413 [1] INFO  NServiceBus.Features.FeatureInitializer [(null)] <(null)> - Features: 
+Audit [4.6.5] - Enabled
+AutoSubscribe [4.6.5] - Enabled
+BinarySerialization [4.6.5] - Controlled by category Serializers
+BsonSerialization [4.6.5] - Controlled by category Serializers
+JsonSerialization [4.6.5] - Controlled by category Serializers
+XmlSerialization [4.6.5] - Controlled by category Serializers
+MsmqTransport [4.6.5] - Enabled
+Gateway [4.6.5] - Disabled
+TimeoutManager [4.6.5] - Enabled
+Sagas [4.6.5] - Enabled
+SecondLevelRetries [4.6.5] - Enabled
+StorageDrivenPublisher [4.6.5] - Disabled
+MessageDrivenSubscriptions [4.6.5] - Enabled
+
+2014-09-22 13:15:23,423 [1] INFO  NServiceBus.Features.FeatureInitializer [(null)] <(null)> - Feature categories: 
+   - Serializers
+       * BinarySerialization - Disabled
+       * BsonSerialization - Disabled
+       * JsonSerialization - Disabled
+       * XmlSerialization - Enabled
+
+2014-09-22 13:15:23,443 [1] INFO  NServiceBus.Unicast.Config.FinalizeUnicastBusConfiguration [(null)] <(null)> - Number of messages found: 2
+2014-09-22 13:15:23,450 [1] INFO  NServiceBus.Config.InfrastructureServices [(null)] <(null)> - Infrastructure service NServiceBus.AutomaticSubscriptions.IAutoSubscriptionStrategy was found in the container and will be used instead of the default
+2014-09-22 13:15:23,453 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.Config.IFinalizeConfiguration completed in 0.10 s
+2014-09-22 13:15:37,406 [1] WARN  NServiceBus.ConfigureRavenPersistence [(null)] <(null)> - Raven could not be contacted. We tried to access Raven using the following url: http://localhost:8081.
+Please ensure that you can open the Raven Studio by navigating to http://localhost:8081.
+To configure NServiceBus to use a different Raven connection string add a connection string named "NServiceBus/Persistence" in your config file, example:
+<connectionStrings>
+    <add name="NServiceBus/Persistence" connectionString="Url = http://localhost:9090" />
+</connectionStrings>
+Reason: System.Net.WebException: The operation has timed out
+   at System.Net.HttpWebRequest.GetResponse()
+   at NServiceBus.ConfigureRavenPersistence.VerifyConnectionToRavenDBServer(IDocumentStore store) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Persistence\Raven\ConfigureRavenPersistence.cs:line 287
+
+2014-09-22 13:15:37,573 [1] WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator [(null)] <(null)> - Queue QWERT-6JNYUW8\private$\Ordering.Server does not exist.
+2014-09-22 13:15:37,850 [1] WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator [(null)] <(null)> - Queue QWERT-6JNYUW8\private$\Ordering.Server.Timeouts does not exist.
+2014-09-22 13:15:37,953 [1] WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator [(null)] <(null)> - Queue QWERT-6JNYUW8\private$\Ordering.Server.TimeoutsDispatcher does not exist.
+2014-09-22 13:15:38,057 [1] WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator [(null)] <(null)> - Queue QWERT-6JNYUW8\private$\Ordering.Server.Retries does not exist.
+2014-09-22 13:15:38,212 [1] INFO  NServiceBus.Installation.PerformanceMonitorUsersInstaller [(null)] <(null)> - Added user 'Qwert-6jnyuw8\Harry' to group 'Performance Monitor Users'.
+2014-09-22 13:15:38,217 [1] INFO  NServiceBus.Persistence.Raven.RavenUserInstaller [(null)] <(null)> - Adding user 'Qwert-6jnyuw8\Harry' to raven. Instance:'http://localhost:8081', Database:'Ordering.Server'.
+2014-09-22 13:15:42,684 [1] WARN  NServiceBus.Persistence.Raven.RavenUserInstaller [(null)] <(null)> - Failed to add user to raven. Processing will continue
+System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:8081
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.InternalConnect(EndPoint remoteEP)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.GetResponse()
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\HttpJsonRequest.cs:line 341
+   at Raven.Client.Connection.HttpJsonRequest.ReadResponseJson() in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\HttpJsonRequest.cs:line 239
+   at Raven.Client.Connection.ServerClient.DirectGet(String serverUrl, String key) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 215
+   at Raven.Client.Connection.ServerClient.<>c__DisplayClass1.<Get>b__0(String u) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 116
+   at Raven.Client.Connection.ReplicationInformer.TryOperation[T](Func`2 operation, String operationUrl, Boolean avoidThrowing, T& result) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ReplicationInformer.cs:line 559
+   at Raven.Client.Connection.ReplicationInformer.ExecuteWithReplication[T](String method, String primaryUrl, Int32 currentRequest, Int32 currentReadStripingBase, Func`2 operation) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ReplicationInformer.cs:line 525
+   at Raven.Client.Connection.ServerClient.ExecuteWithReplication[T](String method, Func`2 operation) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 174
+   at Raven.Client.Connection.ServerClient.Get(String key) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 116
+   at NServiceBus.Persistence.Raven.RavenUserInstaller.AddUserToDatabase(String identity, DocumentStore documentStore) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Persistence\Raven\RavenUserInstaller.cs:line 59
+   at NServiceBus.Persistence.Raven.RavenUserInstaller.Install(String identity) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Persistence\Raven\RavenUserInstaller.cs:line 42
+2014-09-22 13:15:43,047 [8] INFO  NServiceBus.Satellites.SatelliteLauncher [(null)] <(null)> - Started 3/3 NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor, NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-09-22 13:15:43,047 [12] INFO  NServiceBus.Satellites.SatelliteLauncher [(null)] <(null)> - Started 1/3 NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor, NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-09-22 13:15:43,050 [1] INFO  NServiceBus.Satellites.SatelliteLauncher [(null)] <(null)> - Started 2/3 NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor, NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-09-22 13:15:47,681 [14] WARN  NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence [(null)] <(null)> - Raven could not be contacted. We tried to access Raven using the following url: http://localhost:8081.
+Please ensure that you can open the Raven Studio by navigating to http://localhost:8081.
+To configure NServiceBus to use a different Raven connection string add a connection string named "NServiceBus.Persistence" in your config file, example:
+<connectionStrings>
+    <add name="NServiceBus.Persistence" connectionString="http://localhost:9090" />
+</connectionStrings>Original exception: System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 127.0.0.1:8081
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.InternalConnect(EndPoint remoteEP)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.GetResponse()
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\HttpJsonRequest.cs:line 341
+   at Raven.Client.Connection.HttpJsonRequest.ReadResponseJson() in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\HttpJsonRequest.cs:line 239
+   at Raven.Client.Connection.ServerClient.DirectQuery(String index, IndexQuery query, String operationUrl, String[] includes, Boolean metadataOnly, Boolean includeEntries) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 957
+   at Raven.Client.Connection.ServerClient.<>c__DisplayClass53.<Query>b__52(String u) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 917
+   at Raven.Client.Connection.ReplicationInformer.TryOperation[T](Func`2 operation, String operationUrl, Boolean avoidThrowing, T& result) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ReplicationInformer.cs:line 559
+   at Raven.Client.Connection.ReplicationInformer.ExecuteWithReplication[T](String method, String primaryUrl, Int32 currentRequest, Int32 currentReadStripingBase, Func`2 operation) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ReplicationInformer.cs:line 525
+   at Raven.Client.Connection.ServerClient.ExecuteWithReplication[T](String method, Func`2 operation) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 174
+   at Raven.Client.Connection.ServerClient.Query(String index, IndexQuery query, String[] includes, Boolean metadataOnly, Boolean indexEntriesOnly) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Connection\ServerClient.cs:line 917
+   at Raven.Client.Document.AbstractDocumentQuery`2.ExecuteActualQuery() in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Document\AbstractDocumentQuery.cs:line 535
+   at Raven.Client.Document.AbstractDocumentQuery`2.InitSync() in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Document\AbstractDocumentQuery.cs:line 518
+   at Raven.Client.Document.AbstractDocumentQuery`2.get_QueryResult() in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Document\AbstractDocumentQuery.cs:line 505
+   at Raven.Client.Linq.RavenQueryProviderProcessor`1.ExecuteQuery[TProjection]() in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Linq\RavenQueryProviderProcessor.cs:line 1425
+   at Raven.Client.Linq.RavenQueryProviderProcessor`1.Execute(Expression expression) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Linq\RavenQueryProviderProcessor.cs:line 1398
+   at Raven.Client.Linq.RavenQueryProvider`1.Execute(Expression expression) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Linq\RavenQueryProvider.cs:line 135
+   at Raven.Client.Linq.RavenQueryProvider`1.System.Linq.IQueryProvider.Execute(Expression expression) in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Linq\RavenQueryProvider.cs:line 190
+   at Raven.Client.Linq.RavenQueryInspector`1.GetEnumerator() in c:\Builds\RavenDB-Stable\Raven.Client.Lightweight\Linq\RavenQueryInspector.cs:line 99
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence.GetCleanupChunk(DateTime startSlice) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Persistence\Raven\TimeoutPersister\RavenTimeoutPersistence.cs:line 43
+   at NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence.GetNextChunk(DateTime startSlice, DateTime& nextTimeToRunQuery) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Persistence\Raven\TimeoutPersister\RavenTimeoutPersistence.cs:line 72
+
+2014-09-22 13:16:34,341 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.IWantToRunBeforeConfiguration completed in 0.11 s
+2014-09-22 13:16:34,441 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.Config.INeedInitialization completed in 0.00 s
+2014-09-22 13:16:34,454 [1] INFO  NServiceBus.Licensing.LicenseManager [(null)] <(null)> - Trial for Particular Service Platform is still active, trial expires on 10/5/2014. Configuring NServiceBus to run in trial mode.
+2014-09-22 13:16:34,508 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.INeedInitialization completed in 0.06 s
+2014-09-22 13:16:35,883 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.IWantToRunBeforeConfigurationIsFinalized completed in 1.37 s
+2014-09-22 13:16:35,942 [1] INFO  NServiceBus.Features.Sagas [(null)] <(null)> - The saga feature was enabled but no saga implementations could be found. No need to enable the configured saga persister
+2014-09-22 13:16:35,950 [1] INFO  NServiceBus.Features.FeatureInitializer [(null)] <(null)> - Features: 
+Audit [4.6.5] - Enabled
+AutoSubscribe [4.6.5] - Enabled
+BinarySerialization [4.6.5] - Controlled by category Serializers
+BsonSerialization [4.6.5] - Controlled by category Serializers
+JsonSerialization [4.6.5] - Controlled by category Serializers
+XmlSerialization [4.6.5] - Controlled by category Serializers
+MsmqTransport [4.6.5] - Enabled
+Gateway [4.6.5] - Disabled
+TimeoutManager [4.6.5] - Enabled
+Sagas [4.6.5] - Enabled
+SecondLevelRetries [4.6.5] - Enabled
+StorageDrivenPublisher [4.6.5] - Disabled
+MessageDrivenSubscriptions [4.6.5] - Enabled
+
+2014-09-22 13:16:35,961 [1] INFO  NServiceBus.Features.FeatureInitializer [(null)] <(null)> - Feature categories: 
+   - Serializers
+       * BinarySerialization - Disabled
+       * BsonSerialization - Disabled
+       * JsonSerialization - Disabled
+       * XmlSerialization - Enabled
+
+2014-09-22 13:16:35,982 [1] INFO  NServiceBus.Unicast.Config.FinalizeUnicastBusConfiguration [(null)] <(null)> - Number of messages found: 2
+2014-09-22 13:16:35,990 [1] INFO  NServiceBus.Config.InfrastructureServices [(null)] <(null)> - Infrastructure service NServiceBus.AutomaticSubscriptions.IAutoSubscriptionStrategy was found in the container and will be used instead of the default
+2014-09-22 13:16:35,995 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.Config.IFinalizeConfiguration completed in 0.11 s
+2014-09-22 13:16:49,716 [1] WARN  NServiceBus.ConfigureRavenPersistence [(null)] <(null)> - Raven could not be contacted. We tried to access Raven using the following url: http://localhost:8081.
+Please ensure that you can open the Raven Studio by navigating to http://localhost:8081.
+To configure NServiceBus to use a different Raven connection string add a connection string named "NServiceBus/Persistence" in your config file, example:
+<connectionStrings>
+    <add name="NServiceBus/Persistence" connectionString="Url = http://localhost:9090" />
+</connectionStrings>
+Reason: System.Net.WebException: The operation has timed out
+   at System.Net.HttpWebRequest.GetResponse()
+   at NServiceBus.ConfigureRavenPersistence.VerifyConnectionToRavenDBServer(IDocumentStore store) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Persistence\Raven\ConfigureRavenPersistence.cs:line 287
+
+2014-09-22 13:16:50,261 [1] INFO  NServiceBus.Installation.PerformanceMonitorUsersInstaller [(null)] <(null)> - Skipped adding user 'Qwert-6jnyuw8\Harry' to group 'Performance Monitor Users' because the user is already in group.
+2014-09-22 13:16:50,267 [1] INFO  NServiceBus.Persistence.Raven.RavenUserInstaller [(null)] <(null)> - Adding user 'Qwert-6jnyuw8\Harry' to raven. Instance:'http://localhost:8081', Database:'Ordering.Server'.
+2014-09-22 13:41:30,830 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.IWantToRunBeforeConfiguration completed in 0.11 s
+2014-09-22 13:41:30,931 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.Config.INeedInitialization completed in 0.00 s
+2014-09-22 13:41:30,943 [1] INFO  NServiceBus.Licensing.LicenseManager [(null)] <(null)> - Trial for Particular Service Platform is still active, trial expires on 10/5/2014. Configuring NServiceBus to run in trial mode.
+2014-09-22 13:41:30,997 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.INeedInitialization completed in 0.06 s
+2014-09-22 13:41:32,379 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.IWantToRunBeforeConfigurationIsFinalized completed in 1.38 s
+2014-09-22 13:41:32,439 [1] INFO  NServiceBus.Features.Sagas [(null)] <(null)> - The saga feature was enabled but no saga implementations could be found. No need to enable the configured saga persister
+2014-09-22 13:41:32,447 [1] INFO  NServiceBus.Features.FeatureInitializer [(null)] <(null)> - Features: 
+Audit [4.6.5] - Enabled
+AutoSubscribe [4.6.5] - Enabled
+BinarySerialization [4.6.5] - Controlled by category Serializers
+BsonSerialization [4.6.5] - Controlled by category Serializers
+JsonSerialization [4.6.5] - Controlled by category Serializers
+XmlSerialization [4.6.5] - Controlled by category Serializers
+MsmqTransport [4.6.5] - Enabled
+Gateway [4.6.5] - Disabled
+TimeoutManager [4.6.5] - Enabled
+Sagas [4.6.5] - Enabled
+SecondLevelRetries [4.6.5] - Enabled
+StorageDrivenPublisher [4.6.5] - Disabled
+MessageDrivenSubscriptions [4.6.5] - Enabled
+
+2014-09-22 13:41:32,457 [1] INFO  NServiceBus.Features.FeatureInitializer [(null)] <(null)> - Feature categories: 
+   - Serializers
+       * BinarySerialization - Disabled
+       * BsonSerialization - Disabled
+       * JsonSerialization - Disabled
+       * XmlSerialization - Enabled
+
+2014-09-22 13:41:32,478 [1] INFO  NServiceBus.Unicast.Config.FinalizeUnicastBusConfiguration [(null)] <(null)> - Number of messages found: 2
+2014-09-22 13:41:32,485 [1] INFO  NServiceBus.Config.InfrastructureServices [(null)] <(null)> - Infrastructure service NServiceBus.AutomaticSubscriptions.IAutoSubscriptionStrategy was found in the container and will be used instead of the default
+2014-09-22 13:41:32,489 [1] INFO  NServiceBus.Configure [(null)] <(null)> - Invocation of NServiceBus.Config.IFinalizeConfiguration completed in 0.11 s
+2014-09-22 13:41:34,311 [1] INFO  NServiceBus.ConfigureRavenPersistence [(null)] <(null)> - Connection to RavenDB at http://localhost:8080 verified. Detected version: Product version: 2.0.3 / 5a4b7ea, Build version: 2375
+2014-09-22 13:41:34,873 [1] INFO  NServiceBus.Installation.PerformanceMonitorUsersInstaller [(null)] <(null)> - Skipped adding user 'Qwert-6jnyuw8\Harry' to group 'Performance Monitor Users' because the user is already in group.
+2014-09-22 13:41:34,879 [1] INFO  NServiceBus.Persistence.Raven.RavenUserInstaller [(null)] <(null)> - Adding user 'Qwert-6jnyuw8\Harry' to raven. Instance:'http://localhost:8080', Database:'Ordering.Server'.
+2014-09-22 13:41:35,368 [8] INFO  NServiceBus.Satellites.SatelliteLauncher [(null)] <(null)> - Started 3/3 NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor, NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-09-22 13:41:35,373 [10] INFO  NServiceBus.Satellites.SatelliteLauncher [(null)] <(null)> - Started 2/3 NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor, NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-09-22 13:41:35,374 [1] INFO  NServiceBus.Satellites.SatelliteLauncher [(null)] <(null)> - Started 1/3 NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor, NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite

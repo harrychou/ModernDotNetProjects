@@ -1,4 +1,8 @@
-todo.txt
+===============================
+- to do
+> in progress
+X done
+===============================
 
 X sample C# console app
 X create C# library

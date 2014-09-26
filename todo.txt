@@ -23,5 +23,9 @@ X play with NSpec
   X simple send and receive example: 
     http://docs.particular.net/nservicebus/nservicebus-step-by-step-guide
   > other samples: http://docs.particular.net/nservicebus/
+  > Pluralsight
+    X one-way message
+    X request and response
+    > sub-pub and SOA
 - more realistic example
 

@@ -1,0 +1,14 @@
+Hosts and Endpoints
+
+A host can have many enpoints
+A machine/server can have multiple hosts
+
+BusStop.Api
+  - MVC WebAPI
+
+BusStop.Backend 
+  - general NServiceBus host
+  - can scale out
+
+One way messaging
+

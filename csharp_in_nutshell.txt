@@ -1,0 +1,381 @@
+===============================
+1. Introducing C# and the .NET Framework 1
+===============================
+Object Orientation 1
+Type Safety 2
+Memory Management 2
+Platform Support 3
+C#’s Relationship with the CLR 3
+The CLR and .NET Framework 3
+C# and Windows Runtime 5
+What’s New in C# 5.0 6
+
+  * support async functions via 'async' and 'await'
+  * asynchonous continuation
+    - make it easier to write responsive and thread-safe rich-client applications
+    - make it easy to write highly concurrent and efficient I/O-bound applications that don’t tie up a thread resource per operation. 
+
+What’s New in C# 4.0 6
+
+  * Dynamic binding
+    (run-time resolution of types and members)
+  * Optional parameters and named arguments
+    (specify default arg values, named args allow caller to specify arg by name)
+  * Type variance with generic interfaces and delegates
+    (covariant and contravariant, allow more natural type conversions)
+  * COM interoperability improvements
+    - pass by ref without 'ref'
+    - avoid Primary Interop Assemblies
+    - COM variant type return values are map to 'dynamic' rather than 'object', no need for casting
+
+What’s New in C# 3.0 7
+
+  * LINQ
+    - implicit typed local variable (var)
+    - object initializer
+    - lambda expressions
+    - extension methods
+    - query expressions
+    - expression trees (code DOM that describe lamda)
+  * automatic properties
+  * partial class/methods
+
+===============================
+2. C# Language Basics  9
+===============================
+A First C# Program 9
+Syntax 12
+Type Basics 15
+Numeric Types 23
+Boolean Type and Operators 30
+Strings and Characters 32
+Arrays 34
+Variables and Parameters 38
+Expressions and Operators 47
+Statements 51
+Namespaces 59
+
+===============================
+3. Creating Types in C# 67
+===============================
+Classes 67
+Inheritance 80
+The object Type 89
+Structs 93
+Access Modifiers 94
+Interfaces 96
+Enums 102
+Nested Types 105
+Generics 106
+
+===============================
+4. Advanced C#  119
+===============================
+Delegates 119
+Events 128
+Lambda Expressions 135
+Anonymous Methods 139
+try Statements and Exceptions 140
+Enumeration and Iterators 148
+Nullable Types 153
+Operator Overloading 158
+Extension Methods 162
+Anonymous Types 164
+Dynamic Binding 165
+Attributes 173
+Caller Info Attributes (C# 5) 175
+Unsafe Code and Pointers 177
+Preprocessor Directives 180
+XML Documentation 182
+
+===============================
+5. Framework Overview 187
+===============================
+The CLR and Core Framework 189
+Applied Technologies 194
+
+===============================
+6. Framework Fundamentals  201
+===============================
+String and Text Handling 201
+Dates and Times 214
+Dates and Time Zones 221
+Formatting and Parsing 227
+Standard Format Strings and Parsing Flags 233
+Other Conversion Mechanisms 240
+Globalization 244
+Working with Numbers 245
+Enums 249
+Tuples 252
+The Guid Struct 253
+Equality Comparison 254
+Order Comparison 264
+Utility Classes 267
+
+===============================
+7. Collections 271
+===============================
+Enumeration 271
+The ICollection and IList Interfaces 279
+The Array Class 282
+Lists, Queues, Stacks, and Sets 291
+Dictionaries 299
+Customizable Collections and Proxies 306
+Plugging in Equality and Order 312
+
+===============================
+8. LINQ Queries 319
+===============================
+Getting Started 319
+Fluent Syntax 321
+Query Expressions 328
+Deferred Execution 332
+Subqueries 338
+Composition Strategies 342
+Projection Strategies 345
+Interpreted Queries 347
+LINQ to SQL and Entity Framework 354
+Building Query Expressions 368
+
+===============================
+9. LINQ Operators 375
+===============================
+Overview 377
+Filtering 379
+Projecting 383
+Joining 395
+Ordering 403
+Grouping 406
+Set Operators 409
+Conversion Methods 410
+Element Operators 413
+Aggregation Methods 415
+Quantifiers 419
+Generation Methods 420
+
+===============================
+10. LINQ to XML 423
+===============================
+Architectural Overview 423
+X-DOM Overview 424
+Instantiating an X-DOM 427
+Navigating and Querying 430
+Updating an X-DOM 435
+Working with Values 438
+Documents and Declarations 441
+Names and Namespaces 444
+Annotations 450
+Projecting into an X-DOM 450
+
+===============================
+11. Other XML Technologies 457
+===============================
+XmlReader 458
+XmlWriter 467
+Patterns for Using XmlReader/XmlWriter 469
+XmlDocument 473
+XPath 477
+XSD and Schema Validation 481
+XSLT 484
+
+===============================
+12. Disposal and Garbage Collection 485
+===============================
+IDisposable, Dispose, and Close 485
+Automatic Garbage Collection 490
+Finalizers 493
+How the Garbage Collector Works 497
+Managed Memory Leaks 501
+Weak References 505
+
+===============================
+13. Diagnostics and Code Contracts 509
+===============================
+Conditional Compilation 509
+Debug and Trace Classes 512
+Code Contracts Overview 516
+Preconditions 520
+Postconditions 524
+Assertions and Object Invariants 527
+Contracts on Interfaces and Abstract Methods 528
+Dealing with Contract Failure 529
+Selectively Enforcing Contracts 531
+Static Contract Checking 533
+Debugger Integration 535
+Processes and Process Threads 536
+StackTrace and StackFrame 537
+Windows Event Logs 538
+Performance Counters 541
+The Stopwatch Class 545
+
+===============================
+14. Concurrency & Asynchrony 547
+===============================
+Introduction 547
+Threading 548
+Tasks 565
+Principles of Asynchrony 573
+Asynchronous Functions in C# 5.0 578
+Asynchronous Patterns 594
+Obsolete Patterns 601
+
+===============================
+15. Streams and I/O 605
+===============================
+Stream Architecture 605
+Using Streams 607
+Stream Adapters 621
+Compression Streams 629
+Working with Zip Files 631
+File and Directory Operations 632
+File I/O in Windows Runtime 642
+Memory-Mapped Files 644
+Isolated Storage 647
+
+===============================
+16. Networking 653
+===============================
+Network Architecture 653
+Addresses and Ports 655
+URIs 656
+Client-Side Classes 658
+Working with HTTP 671
+Writing an HTTP Server 677
+Using FTP 680
+Using DNS 682
+Sending Mail with SmtpClient 683
+Using TCP 683
+Receiving POP3 Mail with TCP 687
+TCP in Windows Runtime 689
+
+===============================
+17. Serialization 691
+===============================
+Serialization Concepts 691
+The Data Contract Serializer 695
+Data Contracts and Collections 705
+Extending Data Contracts 707
+The Binary Serializer 710
+Binary Serialization Attributes 712
+Binary Serialization with ISerializable 715
+XML Serialization 719
+
+===============================
+18. Assemblies 729
+===============================
+What’s in an Assembly 729
+Strong Names and Assembly Signing 734
+Assembly Names 737
+Authenticode Signing 739
+The Global Assembly Cache 743
+Resources and Satellite Assemblies 745
+Resolving and Loading Assemblies 754
+Deploying Assemblies Outside the Base Folder 759
+Packing a Single-File Executable 760
+Working with Unreferenced Assemblies 762
+
+===============================
+19. Reflection and Metadata 765
+===============================
+Reflecting and Activating Types 766
+Reflecting and Invoking Members 773
+Reflecting Assemblies 785
+Working with Attributes 786
+Dynamic Code Generation 792
+Emitting Assemblies and Types 799
+Emitting Type Members 803
+Emitting Generic Methods and Types 808
+Awkward Emission Targets 810
+Parsing IL 814
+
+===============================
+20. Dynamic Programming 821
+===============================
+The Dynamic Language Runtime 821
+Numeric Type Unification 823
+Dynamic Member Overload Resolution 824
+Implementing Dynamic Objects 830
+Interoperating with Dynamic Languages 833
+
+===============================
+21. Security 837
+===============================
+Permissions 837
+Code Access Security (CAS) 842
+Allowing Partially Trusted Callers 845
+The Transparency Model 847
+Sandboxing Another Assembly 855
+Operating System Security 858
+Identity and Role Security 861
+Cryptography Overview 862
+Windows Data Protection 863
+Hashing 864
+Symmetric Encryption 865
+Public Key Encryption and Signing 870
+
+===============================
+22. Advanced Threading 875
+===============================
+Synchronization Overview 876
+Exclusive Locking 876
+Locking and Thread Safety 884
+Non-Exclusive Locking 890
+Signaling with Event Wait Handles 895
+The Barrier Class 903
+Lazy Initialization 904
+Thread-Local Storage 907
+Interrupt and Abort 909
+Suspend and Resume 910
+Timers 911
+
+===============================
+23. Parallel Programming 915
+===============================
+Why PFX? 915
+PLINQ 918
+The Parallel Class 931
+Task Parallelism 938
+Working with AggregateException 947
+Concurrent Collections 949
+BlockingCollection<T> 952
+
+===============================
+24. Application Domains 957
+===============================
+Application Domain Architecture 957
+Creating and Destroying Application Domains 958
+Using Multiple Application Domains 960
+Using DoCallBack 962
+Monitoring Application Domains 963
+Domains and Threads 963
+Sharing Data Between Domains 965
+
+===============================
+25. Native and COM Interoperability 971
+===============================
+Calling into Native DLLs 971
+Type Marshaling 972
+Callbacks from Unmanaged Code 975
+Simulating a C Union 975
+Shared Memory 976
+Mapping a Struct to Unmanaged Memory 979
+COM Interoperability 983
+Calling a COM Component from C# 985
+Embedding Interop Types 988
+Primary Interop Assemblies 989
+Exposing C# Objects to COM 990
+
+===============================
+26. Regular Expressions 991
+===============================
+Regular Expression Basics 992
+Quantifiers 996
+Zero-Width Assertions 997
+Groups 1000
+Replacing and Splitting Text 1001
+Cookbook Regular Expressions 1003
+Regular Expressions Language Reference 1006
+
+===============================
+Index 1011
+===============================

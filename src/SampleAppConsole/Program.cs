@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using Raven.Client.Document;
 using SampleAppConsole.Msmq;
 
@@ -17,35 +19,79 @@ namespace SampleAppConsole
         }
     }
 
+    public class StringConverter
+    {
+        
+    }
+
     class Program
     {
+        delegate int MyMethod(string s);
+
         static void Main(string[] args)
         {
-           // Sample_01_Msmq();
+            Console.WriteLine("start .... ");
 
-           // Sample_02_RavenDB();
+            var rules = new Dictionary<string, string>();
+            rules.Add("AB", "AA");
+            rules.Add("BA", "AA");
+            rules.Add("CB", "CC");
+            rules.Add("BC", "CC");
+            rules.Add("AA", "A");
+            rules.Add("CC", "C");
+
+            string S = "ABCDE";
+            foreach (char c in S)
+            {
+                Console.WriteLine(c);
+            }
 
 
-            string s = "something";
+            // Sample_01_Msmq();
+            // Sample_02_RavenDB();
+            // Sample_03_ExtensionMethod_String_NullEmptyChecking();
+            // Sample_04_FuncAndAction();
 
-            Console.WriteLine(s.IsNullOrEmpty());
-
-            s = "";
-
-            Console.WriteLine(s.IsNullOrEmpty());
-
-            s = null;
-
-            s = "";
-
-            Console.WriteLine(s.IsNullOrEmpty());
-
-            Console.WriteLine(s.IsNullOrEmpty());
-
-            Console.WriteLine("hit any key to exit ....");
+            Console.WriteLine("end .... hit any key to exit ....");
             Console.ReadKey();
         }
 
+        private static void Sample_04_FuncAndAction()
+        {
+            MyMethod m = RealMethod;
+            Console.WriteLine(m("harry"));
+            RunThisAction(s => Console.WriteLine(s.Length), "harry");
+            Console.WriteLine(RunThisFunc(s => s.Length, "harry"));
+        }
+
+        private static void RunThisAction(Action<string> action, string s)
+        {
+            action(s);
+        }
+
+        private static int RunThisFunc(Func<string, int> func, string s)
+        {
+            return func(s);
+        }
+
+        private static int RealMethod(string ss)
+        {
+            if (ss == null) return 0;
+            return ss.Length;
+        }
+
+        private static void Sample_03_ExtensionMethod_String_NullEmptyChecking()
+        {
+            string s = "something";
+            Console.WriteLine(s.IsNullOrEmpty());
+            s = "";
+            Console.WriteLine(s.IsNullOrEmpty());
+            s = null;
+            Console.WriteLine(s.IsNullOrEmpty());
+            s = "  ";
+            Console.WriteLine(s.IsNullOrEmpty());
+            Console.WriteLine(s.IsNullOrBlank());
+        }
 
 
         private static void Sample_02_RavenDB()

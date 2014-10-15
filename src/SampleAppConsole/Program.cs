@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using Raven.Client.Document;
 using SampleAppConsole.Msmq;
 
@@ -19,41 +22,42 @@ namespace SampleAppConsole
         }
     }
 
-    public class StringConverter
-    {
-        
-    }
-
     class Program
     {
         delegate int MyMethod(string s);
 
         static void Main(string[] args)
         {
-            Console.WriteLine("start .... ");
-
-            var rules = new Dictionary<string, string>();
-            rules.Add("AB", "AA");
-            rules.Add("BA", "AA");
-            rules.Add("CB", "CC");
-            rules.Add("BC", "CC");
-            rules.Add("AA", "A");
-            rules.Add("CC", "C");
-
-            string S = "ABCDE";
-            foreach (char c in S)
-            {
-                Console.WriteLine(c);
-            }
-
-
             // Sample_01_Msmq();
             // Sample_02_RavenDB();
             // Sample_03_ExtensionMethod_String_NullEmptyChecking();
             // Sample_04_FuncAndAction();
 
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+            Task<int> primeNumberTask = Task.Run(() =>
+                                                 {
+                                                     throw new Exception("test");
+
+                                                     return Enumerable.Range(2, 3000000).Count(n =>
+                                                         Enumerable.Range(2, (int) Math.Sqrt(n) - 1).All(i => n%i > 0));
+                                                 });
+
+            var awaiter = primeNumberTask.GetAwaiter();
+            awaiter.OnCompleted(() =>
+            {
+                //int result = awaiter.GetResult();
+                //Console.WriteLine(result); // Writes result
+                Console.WriteLine("done");
+            });
+
             Console.WriteLine("end .... hit any key to exit ....");
             Console.ReadKey();
+        }
+
+        static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            Console.WriteLine("Unobserved Exception : " + e.Exception.Message);
         }
 
         private static void Sample_04_FuncAndAction()

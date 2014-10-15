@@ -72,6 +72,7 @@ Generics 106
 4. Advanced C#  119
 ===============================
 Delegates 119
+  - A delegate is an object that knows how to call a method.
 Events 128
 Lambda Expressions 135
 Anonymous Methods 139
@@ -211,9 +212,227 @@ The Stopwatch Class 545
 ===============================
 14. Concurrency & Asynchrony 547
 ===============================
+
+  * concurrency: deal with more than one thing at a time
+  * basic: threading and tasks
+  * principles of asynchrony
+  * C#5
+
 Introduction 547
+
+  * why concurrency is needed
+    - responsive UI
+    - process requests simultaneously 
+      (IIS handls requests)
+    - parallel programming 
+      (distribute intensive computation to multiple computers/processors)
+    - speculative execution
+      (have a background process/thread try to predict what is needed, have multiple process doing the same task using different algorithm, see which one finish first)
+  * multi-thread is the general mechanism
+    - support in OS level and CLR level
+
 Threading 548
+
+  * thread
+    - execution path
+    - independent to each other
+    - multi-thread programming
+      * multiple threads exist within the same process
+      * share the same excution context (memory, ie. shared state)
+  * creating thread
+    - Metro apps doe not allow creating and starting threads
+      (need to use Tasks)
+    - client app: by default single thread (UI/main thread)
+    - 'Thread' object to start new thread
+
+      Thread t = new Tread(DelegateMethod);
+      t.Start();
+
+    - a thread is 'preempted' when its execution is interrupted by other thread
+    - to get current thread: Thread.CurrentThread
+    - 'Name', 'IsAlive'
+  * join and sleep
+    - 't.Join()' block the calling thread (current main thread), until the called thread (t in this case) completes.
+    - 'Thread.Sleep()' pause the current thread, yield to CPU to decide what to do
+    - 'Thread.Yield()' pause the current thread, yield to other threads in the same process
+  * Blocking
+    - when in 'Sleep' or 'Yield' or waiting on other thread to 'Join', the thread is called 'blocked'
+    - when thread blocks/unblocks, OS performs a 'context switch' (takes only 2 micro-sec)
+    - 'I/O bound' vs. 'Compute bound'
+      * a thread either spend a lot of time waiting (I/O bound)
+      * or, a thread spend a lot of time executingt (compute bound)
+    - blocking vs. spinning
+      * blocking, let other thread run, cause context switch
+      * spining, wasting resource but occupy the current thread, does not cause context switch
+  * local vs. shared state
+    - each thread has its own memory stack and local variable
+    - threads can share data by
+      * common object reference (passed in)
+      * lambda can capture the local field (into field by CLR)
+      * static fields
+    - shared state can cuase 'thread safety' issues
+    - shared state can be fixed by locking
+    - better way is to avoid shared state (by asynchronous programming patterns)
+  * locking and thread safety
+    - locking: 
+      static readonly object _locker = new object();
+      .... 
+      lock (_locker)
+      {
+        ....
+      }
+    - locking ensure only one thread can execute the statements within at one time
+    - locking can provide 'thread safety'
+    - locking is not silver bullet, easy to forget, can create dead-lock
+    - good use of locking: around accessing a shared inmemory cache for frequently accessed database objects in an ASP.NET application. (see page 888)
+  * pass data to a thread
+    - use lambda is the easiest
+      Thread t = new Thread ( () => Print ("Hello from t!") );
+      t.Start();
+      ...
+      static void Print (string message) { Console.WriteLine (message); }
+    - remeber lammbda's variables are shared
+      for (int i = 0; i < 10; i++)
+        new Thread (() => Console.Write (i)).Start();
+      (will print out nondeterministic number)
+    - to solve this: copy local
+      for (int i = 0; i < 10; i++)
+      {
+        int temp = i;
+        new Thread (() => Console.Write (temp)).Start();
+      } 
+  * exception handling
+    - try to handle exception in each thead's main entry point
+    - to centrally handle the exception
+      Application.DispatcherUnhandledException
+      Applicaiton.ThreadException
+  * foreground vs. background thread
+    - foreground:
+      * all thread created explcitly
+      * process cannot exit without all foreground threads end
+    - background:
+      * background threads end when process (all foreground threads) ends
+  * thread priority
+    - has nothing to do with background or foreground
+  * signaling
+    - provide a hook for main thread to 'signal' the created thread
+
+      var signal = new ManualResetEvent (false);
+      new Thread (() =>
+      {
+        Console.WriteLine ("Waiting for signal...");
+        signal.WaitOne();
+        signal.Dispose();
+        Console.WriteLine ("Got signal!");
+      }).Start();
+      Thread.Sleep(2000);
+      signal.Set(); // "Open" the signal
+
+  * threading in Rich UI
+    - to provide more responsiveness, it is common to create 'worker thread' to do some work, while updating UI with progress
+    - while UI controls can only be access from main UI thread
+    - the 'worker thread' need a way to 'marshal' the UI update request to the UI main thread
+    - WPF, WinForm, Metro all have differnt ways to do it
+    - all with using delegate
+  * Synchronization Context
+    - provided by System.ComponentModel
+    - a way to marshal request to main UI thread
+    - Framework 2.0 introduce 'BackgroundWorker' (replaced by Tasks and Asynchronous functions) to make it easy to use SynchronizationContext 
+    - The new way (Tsks and async functions) also leverage SynchnronizationContext
+  * Thread Pool
+    - avoid constant thread switching, useful if have hundreds of threads
+    - things to notice
+      * cannot Name the threads
+      * always background threads
+      * blocking pooled threads can degrade performance
+    - to run something on pooled threads
+      Task.Run (() => Console.WriteLine ("Hello from the thread pool"));
+    - Thread pools are used in
+      * WCF/Remoting/ASP.NET/WebService/App Server
+      * System.Timers.Timer and System.Threading.Timer
+      * Parallel Programming constructs (PLINQ, Parallel)
+      * BackgroundWorker
+      * Asynchronous delegates
+    - Hygiene of thread pool
+      (avoid oversubscription)
+
 Tasks 565
+
+  * Task
+    - thread is too low level
+      * no easy way to return data from thread
+      * can't continue something after thread finish (Join will work but need blocking current thread)
+    - thread is hard to compose large app
+    - higher level of abstraction than Thread
+    - represents more than thread (there are other concurrent operations)
+    - can leverage thread pool if needed
+    - with 'TaskCompletionSource' can avoid threads for I/O-bound operations
+    - 'compositional' by chain together through 'continuations'
+    - introduced in Framework 4.0, enhanced to support asynchronous functions
+  * Starting a Task
+    Task.Run(() => Console.WriteLine("Foo"));
+    - Task use pooled thread by default, which make all threads 'background thread', so the mainthread need to keep the app running before existing, or the 'background' threads will not complete
+    - Wait
+      equivelent of thread.Join(), block current thread until the started thread finished
+      * can timeout
+      * can pass in timeout and cancellation token to end the wait early (see Cancellation)
+    - long running tasks
+      * default CLR will use thread pool (ideal for short-running compute-intense work)
+      * thread pool is not suitable for long-running threads
+      * you can pass ThreadCreationOptions.LongRunning to Task.Factory.StartNew 
+      * or. if I/O bound, use TaskCompletionSource and asyn functions to use callbacks (continuations)
+        if compute bound, use producer/comsumer queue
+    - allow easy capture of return value
+      Task<int> task = Task.Run (() => { Console.WriteLine ("Foo"); return 3; });
+      ...
+      task.Result
+      * calling task.Result will have the effect of waiting for the result to come
+      * Task<TResult> is also called Future 
+    - exception handling
+      * if task 'faults', the error will be captured and rethrow later, when .Wait() or .Result is called
+      * CLR wraps the exception in an AggregateException in order to play well with parallel programming scenarios;
+
+      Task task = Task.Run (() => { throw null; });
+      try
+      {
+        task.Wait();
+      }
+      catch (AggregateException aex)
+      {
+        if (aex.InnerException is NullReferenceException)
+          Console.WriteLine ("Null!");
+        else
+          throw;
+      }
+
+      * Task also provide IsFaulted and IsCanceled properties
+        - if IsFaulted and IsCanceled are true, means no error
+        - If IsCanceled is true, an OperationCanceledOperation was thrown
+        - If IsFaulted is true, other types of exception was thrown and the Exception property will indicate the error.
+      * if we don't use Wait() or .Result, any exceptions in Task will be silent
+        => unobserved exception
+        - in CLR 4.0, they would actually terminate your program by re-throw the exception on the finalizer thread when the task dropped out of scope and was garbage collected. 
+        - will cause problem of timing of exception is not easy to know where
+        - this behavior was dropped in CLR 4.5
+      * when to 'not' handle exceptions
+        - if just accessing un-essential resource
+        - not handling excepitons may leave your system (including data) in an invalid state
+        - make diagnose info/log incomplete
+    - continuation: says to a task, “when you’ve finished, continue doing something else.”
+      * .GetAwaiter, OnCompleted and GetResult
+
+        Task<int> primeNumberTask = Task.Run(() => ... );
+
+        var awaiter = primeNumberTask.GetAwaiter();
+        awaiter.OnCompleted(() =>
+        {
+          int result = awaiter.GetResult();
+          // works to be done after task completed
+        });
+
+      * .ContinueWith
+    - 
+    
 Principles of Asynchrony 573
 Asynchronous Functions in C# 5.0 578
 Asynchronous Patterns 594

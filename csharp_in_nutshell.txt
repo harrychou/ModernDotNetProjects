@@ -414,10 +414,7 @@ Tasks 565
         - in CLR 4.0, they would actually terminate your program by re-throw the exception on the finalizer thread when the task dropped out of scope and was garbage collected. 
         - will cause problem of timing of exception is not easy to know where
         - this behavior was dropped in CLR 4.5
-      * when to 'not' handle exceptions
-        - if just accessing un-essential resource
-        - not handling excepitons may leave your system (including data) in an invalid state
-        - make diagnose info/log incomplete
+      * TaskScheduler.UnobservedTaskException usage (not sure I understand it)
     - continuation: says to a task, “when you’ve finished, continue doing something else.”
       * .GetAwaiter, OnCompleted and GetResult
 
@@ -430,11 +427,72 @@ Tasks 565
           // works to be done after task completed
         });
 
+        - OnComplete automaticaly use the synchornization context (if available - has UI thread) and marshal data back to UI thread, can turn-off for performance reasons by: 
+
+          var awaiter = primeNumberTask.ConfigureAwait (false).GetAwaiter();
+
       * .ContinueWith
-    - 
-    
+        - another way to do continuation
+          primeNumberTask.ContinueWith (antecedent =>
+          {
+            int result = antecedent.Result;
+            Console.WriteLine (result); // Writes 123
+          });
+        - returns a Task for easier continuation
+        - need to deal with AggregateException directly
+        - no auto marshaling for synchronization context
+        - in non-UI contexts, you must specify TaskContinuationOptions.ExecuteSynchronously if you want the continuation to execute on the same thread; otherwise it will bounce to the thread pool.
+    - TaskCompletionSource
+      * lets you create a task out of any operation that starts and finishes some time later.
+      * useful for wrapping methods that return something later
+      * the book goes on for an example of Delay function to delay execution of something without blocking threads
+      * this is useful to turn a non-Task async method into a Task
+    - Delay
+      * The Task.Delay is useful to delay execution of something asynchronously (Thread.Sleep still block)
+        Task.Delay (5000).GetAwaiter().OnCompleted (() => Console.WriteLine (42));
+        or:
+        Task.Delay (5000).ContinueWith (ant => Console.WriteLine (42));
+
 Principles of Asynchrony 573
+
+  * sumamry: 
+    - what is asynchronous operations/methods
+    - what is asynchronous programming
+  * sync and async
+    - A synchronous operation does its work before returning to the caller.
+      (eg. Console.WriteLine or Thread.Sleep)
+    - An asynchronous operation does (most or all of) its work after returning to the caller.
+      * less common
+      * has 'concurrency' (the callee and caller can work on different things at once)
+      * aka. non-blocking
+    - we've seen the following methods:
+      • Thread.Start
+      • Task.Run
+      • Methods that attach continuations to tasks
+  * prinicple of async programming: 
+    - you write long-running (or potentially long-running) functions asynchronously.
+    - contrast to using thread to explicitly run the long-running functions synchronously
+    - concurrency is initiated inside the long-running function, rather than from outside the function.  
+    - benefits:
+      * for I/O bound operations: 
+        - no threads involved
+        - improve scalability and efficiency
+        - thread-efficiency
+      * for UI apps:
+        - less code on worker thread
+        - thread-safety
+        - if sync programming: we end up with a single concurrent operation that spans many methods (course-grained concurrency),
+        - if use async programming: we need not start a thread until it’s actually needed (fine-grained concurrency)
+  * The book go through an example to show the complexity of making async programming for UI thread
+  * and shows that async / await can simplify our tasks
+  * another way to look at the problem:
+    - imperative looping constructs (for, foreach and so on), do not mix well with continuations, because they rely on the current local state of the method
+    - we can replacing the imperative looping constructs with the functional equivalent (in other words, LINQ queries). This is the basis of Reactive Framework (Rx) and can be a good option when you want to execute query operators over the result—or combine multiple sequences. The price to pay is that to avoid blocking, Rx operates over push-based sequences, which can be conceptually tricky.
+
 Asynchronous Functions in C# 5.0 578
+
+  
+
 Asynchronous Patterns 594
 Obsolete Patterns 601
 

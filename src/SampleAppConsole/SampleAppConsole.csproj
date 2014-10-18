@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncSample\AsyncProgramSample.cs" />
     <Compile Include="Msmq\MsmqMessage.cs" />
     <Compile Include="Msmq\MsmqTester.cs" />
     <Compile Include="Program.cs" />

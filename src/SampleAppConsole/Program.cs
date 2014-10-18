@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Raven.Client.Document;
+using SampleAppConsole.AsyncSample;
 using SampleAppConsole.Msmq;
 
 namespace SampleAppConsole
@@ -33,31 +35,41 @@ namespace SampleAppConsole
             // Sample_03_ExtensionMethod_String_NullEmptyChecking();
             // Sample_04_FuncAndAction();
 
-            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
-            Task<int> primeNumberTask = Task.Run(() =>
-                                                 {
-                                                     throw new Exception("test");
+            Stopwatch sw = Stopwatch.StartNew();
 
-                                                     return Enumerable.Range(2, 3000000).Count(n =>
-                                                         Enumerable.Range(2, (int) Math.Sqrt(n) - 1).All(i => n%i > 0));
-                                                 });
-
-            var awaiter = primeNumberTask.GetAwaiter();
+           // AsyncProgramSample.DisplayPrimeCounts_3();
+            var awaiter = DisplayPrimeCounts().GetAwaiter();
             awaiter.OnCompleted(() =>
             {
-                //int result = awaiter.GetResult();
-                //Console.WriteLine(result); // Writes result
-                Console.WriteLine("done");
+                sw.Stop();
+                Console.WriteLine(sw.ElapsedMilliseconds);
+
+                Console.WriteLine("end .... hit any key to exit ....");
             });
 
-            Console.WriteLine("end .... hit any key to exit ....");
             Console.ReadKey();
+
+        }
+
+       static async Task DisplayPrimeCounts()
+        {
+            for (int i = 0; i < 10; i++)
+                Console.WriteLine(await GetPrimesCountAsync(i * 1000000 + 2, 1000000) +
+                " primes between " + (i * 1000000) + " and " + ((i + 1) * 1000000 - 1));
+            Console.WriteLine("Done!");
+        }
+
+        static Task<int> GetPrimesCountAsync(int start, int count)
+        {
+            return Task.Run(() =>
+                ParallelEnumerable.Range(start, count).Count(n =>
+                    Enumerable.Range(2, (int)Math.Sqrt(n) - 1).All(i => n % i > 0)));
         }
 
         static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            Console.WriteLine("Unobserved Exception : " + e.Exception.Message);
+            Console.WriteLine("UNOBSERVED Exception : " + e.Exception.Message);
         }
 
         private static void Sample_04_FuncAndAction()

@@ -491,7 +491,37 @@ Principles of Asynchrony 573
 
 Asynchronous Functions in C# 5.0 578
 
-  
+  * C# 5.0 introduces the async and await keywords
+  * let you write asynchronous code easily
+    - has the same structure and simplicity as synchronous code
+    - eliminating the “plumbing” of asynchronous programming.  
+  * await: simplifies the attaching of continuations
+
+    var result = await expression;
+    statement(s);
+
+    becomes: 
+    
+    var awaiter = expression.GetAwaiter();
+    awaiter.OnCompleted (() =>
+    {
+      var result = awaiter.GetResult();
+      statement(s);
+    );
+
+    - the actual emitted code is more complex
+  * in order to compile code with 'await', you need to mark the method as 'async'
+    - can be applied only to methods (and lambda expressions) that return void or (as we’ll see later) a Task or Task<TResult>
+  * async functions: methods with 'async' keyword
+    - Upon encountering an await expression, execution (normally) returns to the caller (similar to yield return)
+    - before returning, the runtime attaches a continuation to the awaited task
+      * ensuring that when the task completes, execution jumps back into the method and continues where it left off.
+      * if the task faults, exception rethrown
+      * if return value OK, the returned value is returned to the 'await' keyword/expression
+  * normally, you 'await' on tasks
+  * 'await' returns data type <T> based on Task<T>, or just don't return anything if Task does not return anything
+  * 'await' can capture the local state, which ensure the closure and make 'await' useable in almost any place within a method
+  * The compiler relies on continuations (via the awaiter pattern) to resume execution after an await expression. This means that if running on the UI thread of a rich client
 
 Asynchronous Patterns 594
 Obsolete Patterns 601
@@ -593,7 +623,40 @@ Public Key Encryption and Signing 870
 ===============================
 22. Advanced Threading 875
 ===============================
+
 Synchronization Overview 876
+
+  * what is Synchronization
+    - the act of coordinating concurrent actions for a predictable outcome.
+    - important when multiple threads access the same data
+  * continuations and task combinators (in Ch14): the easiest and higher level approach
+
+The simplest and most useful synchronization tools are arguably the continuations
+and task combinators we described in Chapter 14. By formulating concurrent programs
+into asynchronous operations strung together with continuations and combinators,
+you lessen the need for locking and signaling. However, there are still times
+when the lower-level constructs come into play.
+The synchronization constructs can be divided into three categories:
+Exclusive locking
+Exclusive locking constructs allow just one thread to perform some activity or
+execute a section of code at a time. Their primary purpose is to let threads access
+shared writing state without interfering with one other. The exclusive locking
+constructs are lock, Mutex (and SpinLock).
+Non-exclusive locking
+Nonexclusive locking lets you limit concurrency. The nonexclusive locking
+constructs are Semaphore(Slim) and ReaderWriterLock(Slim).
+Signaling
+These allow a thread to block until receiving one or more notifications from
+other thread(s). The signaling constructs include ManualResetEvent(Slim),
+AutoResetEvent, CountdownEvent and Barrier. The former three are referred to
+as event wait handles.
+It’s also possible (and tricky) to perform certain concurrent operations on shared
+state without locking, through the use of nonblocking synchronization constructs.
+These are Thread.MemoryBarrier, Thread.VolatileRead, Thread.VolatileWrite, the
+volatile keyword, and the Interlocked class. We cover this topic online, along with
+Monitor’s Wait/Pulse methods, which can be used to write custom signaling logic—
+see http://albahari.com/threading/.
+
 Exclusive Locking 876
 Locking and Thread Safety 884
 Non-Exclusive Locking 890
